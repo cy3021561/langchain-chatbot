@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 
 
 # Loading environment variables
+load_dotenv()
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 ## LangSmith tracking
 os.environ["LANGCHAIN_TRACING_V2"] = "true"
