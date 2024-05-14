@@ -20,3 +20,4 @@ wikipedia
 arxiv
 langchainhub
 ipykernel
+sentence_transformers
