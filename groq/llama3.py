@@ -18,7 +18,8 @@ os.environ['OPENAI_API_KEY'] = os.getenv("OPENAI_API_KEY")
 os.environ["LANGCHAIN_TRACING_V2"] = "true"
 groq_api_key = os.getenv('GROQ_API_KEY')
 
-st.title("ChatGroq with Lllama3 Demo")
+st.title("MLOps Q&A Chatbot")
+st.subheader("with Llama3 model, Langchain, and Groq API")
 
 llm = ChatGroq(groq_api_key=groq_api_key,
                model_name="Llama3-8b-8192")
@@ -44,7 +45,7 @@ def vector_embedding():
         # Use st.session_state to store and access session-specific data across multiple user interactions within the same session. 
         # It provides a way to maintain state between different function calls or user interactions without having to use global variables or external storage.
         st.session_state.embeddings = OpenAIEmbeddings()
-        st.session_state.loader = PyPDFDirectoryLoader("./us_census")
+        st.session_state.loader = PyPDFDirectoryLoader("./MLOps")
         st.session_state.docs = st.session_state.loader.load() ## Document Loading
         st.session_state.text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
         st.session_state.final_docs = st.session_state.text_splitter.split_documents(st.session_state.docs) ## Splitted to Chunk
@@ -54,7 +55,7 @@ prompt1 = st.text_input("Enter Your Question Of the Documents")
 
 if st.button("Documents Embedding"):
     vector_embedding()
-    st.write("Vector Store DB is ready")
+    st.write("FAISS VectorStore DB is ready")
 
 if prompt1:
     start = time.process_time()
